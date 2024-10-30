@@ -1,12 +1,12 @@
 {
   "name": "auth-server",
   "version": "1.0.0",
-  "description": "Robhust authentication systme with passport and 0Ahth",
+  "description": "Robhust authentication system with passport and 0Ahth",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "dev": "nodemon --env-file=.env index.js",
-    "start": "nodemon --env-file=.env index.js"
+    "start": "node ."
   },
   "keywords": [
     "authentication"
