@@ -67,6 +67,7 @@ export const sendVerificationCode = async (req, res) => {
     const newUnverifiedUser = new UnverifiedUser({
       email: value.email,
       name: value.name,
+      phoneNumber: value.phoneNumber,
       password: hashedPassword,
       verificationCode,
     });

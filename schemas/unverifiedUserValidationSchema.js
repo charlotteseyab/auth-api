@@ -13,8 +13,16 @@ const name = Joi.string().trim().required().messages({
   "any.required": "Please provide your full name.",
 });
 
+const phoneNumber = Joi.string()
+  .pattern(/^[0-9]{7,15}$/)
+  .optional()
+  .messages({
+    "string.pattern.base": "Invalid phone number.",
+    "any.required": "Phone number is required.",
+  });
+
 const code = Joi.string()
-  .pattern(/^\d{4}$/)
+  // .pattern(/^\d{4}$/)
   .required()
   .messages({
     "string.pattern.base": "Verification code must be a 4-digit number.",
@@ -26,7 +34,7 @@ const unverifiedUserValidationSchema = Joi.object({
   email,
   password,
   name,
-});
+}).unknown(true);
 
 export default unverifiedUserValidationSchema;
 
