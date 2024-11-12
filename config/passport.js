@@ -72,7 +72,6 @@ passport.use(
 
         // 7. Delete unverified user from db
         await UnverifiedUser.deleteOne({ email: unverifiedUser.email });
-
         console.log("User successfully signed up--->", newUser);
         return done(null, newUser);
       } catch (error) {

@@ -41,7 +41,8 @@ router.post("/signup", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.status(200).json(user);
+      const {password, PasswordResetCode, passwordResetCodeExpiresAt,  ...rest} = user._doc
+      return res.status(200).json({...rest});
     });
   })(req, res, next);
 });
