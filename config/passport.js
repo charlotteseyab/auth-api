@@ -121,7 +121,7 @@ passport.use(
     {
       clientID: process.env.CLIENT_ID,
       clientSecret: process.env.CLIENT_SECRET,
-      callbackURL: "http://localhost:8000/api/v1/auth/google/callback",
+      callbackURL: process.env.CALLBACK_URL || "http://localhost:8000/api/v1/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
