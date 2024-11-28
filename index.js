@@ -72,16 +72,16 @@ app.use(
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    resave: false, // Don't save session if unmodified
+    resave: true, // Don't save session if unmodified 
     saveUninitialized: false, // Don't create session until something is stored
     store: MongoStore.create({
       mongoUrl: process.env.DATABASE_URL,
     }),
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
-       httpOnly: true, // Ensures the cookis is sent only over HTTP(S), not client JS
-      secure: true, //requires cookie to be sent over https
-      // sameSite: "lax",
+      httpOnly: true, // Ensures the cookis is sent only over HTTP(S), not client JS
+      secure: process.env.NODE_ENV === "production", //requires cookie to be sent over https
+      sameSite: "lax",
     },
     rolling: true, // Reset maxAge on every response
   })
