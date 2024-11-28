@@ -69,6 +69,7 @@ app.use(
     //    frameguard: { action: 'deny' } // Example: prevent framing of your site
   })
 );
+app.set("trust proxy", 1); // Trust the first proxy
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
