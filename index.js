@@ -82,7 +82,7 @@ app.use(
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
       httpOnly: true, // Ensures the cookis is sent only over HTTP(S), not client JS
       secure: process.env.NODE_ENV === "production", //requires cookie to be sent over https
-      sameSite: "lax",
+      // sameSite: "lax",
     },
     rolling: true, // Reset maxAge on every response
   })
