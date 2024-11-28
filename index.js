@@ -13,6 +13,7 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 import csrf from "csrf";
 import helmet from "helmet";
+import authRouter from "./routes/auth.js";
 
 dotenv.config();
 
@@ -89,23 +90,24 @@ app.use(
 // Initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(authRouter);
 
 //Routes Middleware
 // Dynamically import and use routes
-async function setupRoutes() {
-  try {
-    const routeFiles = await readdir("./routes");
-    for (const file of routeFiles) {
-      const routePath = `./routes/${file}`;
-      const { default: routeModule } = await import(routePath);
-      app.use("/api/v1", routeModule);
-    }
-  } catch (error) {
-    console.error("Error loading routes:", error);
-  }
-}
+// async function setupRoutes() {
+//   try {
+//     const routeFiles = await readdir("./routes");
+//     for (const file of routeFiles) {
+//       const routePath = `./routes/${file}`;
+//       const { default: routeModule } = await import(routePath);
+//       app.use("/api/v1", routeModule);
+//     }
+//   } catch (error) {
+//     console.error("Error loading routes:", error);
+//   }
+// }
 
-setupRoutes();
+// setupRoutes();
 
 // CSRF protection
 // const csrfProtection = csrf({ cookie: true });

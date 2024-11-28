@@ -8,7 +8,7 @@ import {
   sendPasswordResetCode,
   sendVerificationCode,
 } from "../controllers/auth.js";
-const router = express.Router();
+const authRouter = express.Router();
 
 // //Controllers
 // const {
@@ -21,10 +21,10 @@ const router = express.Router();
 // } = require("../controllers/auth");
 
 //-------------Send Email Verification Code ---------
-router.post("/verification-code", sendVerificationCode);
+authRouter.post("/api/v1/verification-code", sendVerificationCode);
 
 // --------------Sign up-----------------
-router.post("/signup", (req, res, next) => {
+authRouter.post("/api/v1/signup", (req, res, next) => {
   passport.authenticate("local-signup", (err, user, info) => {
     if (err) {
       // Handle any errors that occurred during authentication
@@ -48,7 +48,7 @@ router.post("/signup", (req, res, next) => {
 });
 
 // -----------------log In -----------------
-router.post("/login", (req, res, next) => {
+authRouter.post("/api/v1/login", (req, res, next) => {
   passport.authenticate("local-login", (err, user, info) => {
     if (err) {
       // Handle any errors that occurred during authentication
@@ -71,13 +71,13 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
-router.get(
-  "/auth/google",
+authRouter.get(
+  "/api/v1/auth/google",
   passport.authenticate("google", { scope: ["profile", "email"] })
 );
 
 // Handle the Google OAuth2 callback after successful authentication
-router.get("/auth/google/callback", (req, res, next) => {
+authRouter.get("/api/v1/auth/google/callback", (req, res, next) => {
   passport.authenticate("google", (err, user, info) => {
     if (err) {
       // Handle any errors that occurred during authentication
@@ -101,11 +101,11 @@ router.get("/auth/google/callback", (req, res, next) => {
 });
 
 // Logout User
-router.post("/logout", logout);
+authRouter.post("/api/v1/logout", logout);
 
-router.post("/current-user", checkAuthentication, currentUser);
+authRouter.post("/api/v1/current-user", checkAuthentication, currentUser);
 
-router.post("/password-forgot", sendPasswordResetCode);
-router.post("/password-reset", resetPassword);
+authRouter.post("/api/v1/password-forgot", sendPasswordResetCode);
+authRouter.post("/api/v1/password-reset", resetPassword);
 
-export default router;
+export default authRouter;
