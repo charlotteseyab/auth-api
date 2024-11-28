@@ -39,7 +39,7 @@ expressOasGenerator.handleResponses(app, {
 });
 
 //Middlewares
-const allowedOrigins = ["http://localhost:5173", "http://example.com"];
+const allowedOrigins = ["http://localhost:5173", "https://gorilla-auth.vercel.app"];
 app.use(
   cors({
     credentials: true,
