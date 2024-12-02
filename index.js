@@ -81,8 +81,8 @@ app.use(
     cookie: {
       maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days in milliseconds
       httpOnly: true, // Ensures the cookis is sent only over HTTP(S), not client JS
-      secure: true, //requires cookie to be sent over https
-      sameSite: "None",
+      secure: process.env.NODE_ENV === "production", //true, //requires cookie to be sent over https
+       sameSite: process.env.NODE_ENV ==="development" ? "lax" : "None",
     },
     rolling: true, // Reset maxAge on every response
   })
