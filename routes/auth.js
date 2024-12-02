@@ -94,8 +94,8 @@ authRouter.get("/api/v1/auth/google/callback", (req, res, next) => {
         return next(err);
       }
       return res.status(200)
-      // .json(user)
-      .redirect("http://localhost:5173/dashboard/client");
+        // .json(user)
+        .redirect(process.env.NODE_ENV === "production" ? "https://gorilla-auth.vercel.app/dashboard/client" : "http://localhost:5173/dashboard/client");
     });
   })(req, res, next);
 });
