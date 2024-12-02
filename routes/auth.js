@@ -93,7 +93,9 @@ authRouter.get("/api/v1/auth/google/callback", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return res.status(200).json(user);
+      return res.status(200)
+      // .json(user)
+      .redirect("http://localhost:5173/dashboard/client");
     });
   })(req, res, next);
 });
